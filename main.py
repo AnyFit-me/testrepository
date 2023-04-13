@@ -20,3 +20,5 @@ submission_date = datetime.now().date()
 generated_file_name = generate_webpage(name, offer, submission_date)
 
 push_to_github()
+
+print("Generated webpage URL:", generated_file_name)
