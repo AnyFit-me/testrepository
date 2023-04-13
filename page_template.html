@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{name} - Offer</title>
+    <style>
+        .name {{
+            position: absolute;
+            top: 100px; /* Adjust the Y coordinate */
+            left: 100px; /* Adjust the X coordinate */
+        }}
+        .offer {{
+            position: absolute;
+            top: 200px; /* Adjust the Y coordinate */
+            left: 100px; /* Adjust the X coordinate */
+        }}
+        .timer {{
+            position: absolute;
+            top: 300px; /* Adjust the Y coordinate */
+            left: 100px; /* Adjust the X coordinate */
+        }}
+    </style>
+    <script>
+        // Countdown timer function
+        function countdownTimer(endDate) {{
+            const now = new Date().getTime();
+            const distance = endDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+            if (distance < 0) {{
+                clearInterval(timerInterval);
+                document.getElementById("timer").innerHTML = "EXPIRED";
+            }}
+        }}
+
+        // Set the countdown end date
+        const submissionDate = new Date("{submission_date}");
+        const expiryDate = new Date(submissionDate);
+        expiryDate.setDate(expiryDate.getDate() + 3);
+
+        // Update the timer every second
+        const timerInterval = setInterval(() => countdownTimer(expiryDate), 1000);
+    </script>
+</head>
+<body>
+    <img src="home/NeoMorph/testrepository/Liverpool Feedback Voucher Blank (1).png" alt="Background Image">
+    <div class="name">{name}</div>
+    <div class="offer">{offer}</div>
+    <div class="timer" id="timer"></div>
+</body>
+</html>
